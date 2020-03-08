@@ -56,11 +56,14 @@ void add_nth_node(struct LinkedList *list, int n, void *new_data) {
 struct Node* remove_nth_node(struct LinkedList *list, int n) {
     if (list->size == 1) {
         list->size--;
-        return list->head;
+	struct Node *to_remove = list->head;
+	list->head = NULL;
+	list->tail = NULL;
+        return to_remove;
     }
     if (n >= (list->size - 1)) {
         struct Node *curr = list->head;
-        for (int i = 0; i < (list->size - 2); i++) {
+        for (int i = 0; i < (list->size - 1); i++) {
             curr = curr->next;
         }
         struct Node *toremove = curr->next;
@@ -68,7 +71,7 @@ struct Node* remove_nth_node(struct LinkedList *list, int n) {
         list->tail = curr;
         list->size--;
         return toremove;
-    } else if(n == 0) {
+    } else if (n == 0) {
         struct Node *to_next = list->head;
         list->head = list->head->next;
         list->size--;
@@ -107,9 +110,11 @@ void free_list(struct LinkedList **pp_list) {
         free(curr);
         curr = next;
     }
-    free(*pp_list);
-    *pp_list = NULL;
+    list->head = NULL;
+    list->tail = NULL;
     list->size = 0;
+    free(list);
+    *pp_list = NULL;
 }
 
 /*
