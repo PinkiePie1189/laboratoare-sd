@@ -197,8 +197,8 @@ void print_string_list(struct CircularDoublyLinkedList *list) {
  * valorile tuturor nodurilor.
  */
 void print_ints_left_circular(struct Node *start) {
-    if (start == NULL) {
-        fprintf(stderr, "Start node is null\n");
+    if (list == NULL) {
+        fprintf(stderr, "List is null\n");
         return;
     }
 
@@ -218,8 +218,8 @@ void print_ints_left_circular(struct Node *start) {
  * valorile tuturor nodurilor.
  */
 void print_ints_right_circular(struct Node *start) {
-    if (start == NULL) {
-        fprintf(stderr, "Start node is null\n");
+    if (list == NULL) {
+        fprintf(stderr, "List is null\n");
         return;
     }
 
